@@ -1,5 +1,6 @@
 FROM ubuntu:20.04
 
+ARG GITHUB_ACCESS_TOKEN
 ARG USER=oddcamp
 ARG USER_ID=1000
 ARG GROUP_ID=1000
@@ -45,6 +46,9 @@ RUN asdf plugin-add nodejs
 RUN asdf plugin-add yarn
 
 RUN $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring
+
+# configure ghp to use a token
+RUN echo "//npm.pkg.github.com/:_authToken=${GITHUB_ACCESS_TOKEN}" >> ~/.npmrc
 
 WORKDIR /home/oddcamp
 
