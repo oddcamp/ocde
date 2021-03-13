@@ -28,11 +28,12 @@ RUN apt install -y --no-install-recommends \
     zlib1g-dev \
     libicu-dev
 
+SHELL ["/bin/bash", "-l", "-c"]
 RUN addgroup --gid $GROUP_ID $USER
 RUN adduser --shell /bin/bash --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID $USER
 
 USER $USER
-SHELL ["/bin/bash", "-l", "-c"]
+ENV PATH="${PATH}:/home/$USER/.asdf/shims:/home/$USER/.asdf/bin"
 
 # install and setup asdf version manager
 RUN git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch $ASDF_VERSION
