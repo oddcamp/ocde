@@ -31,6 +31,9 @@ RUN apt install -y --no-install-recommends \
 SHELL ["/bin/bash", "-l", "-c"]
 RUN addgroup --gid $GROUP_ID $USER
 RUN adduser --shell /bin/bash --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID $USER
+RUN mkdir -p /app/node_modules
+RUN mkdir -p /app/tmp/cache
+RUN chown -R $USER:$USER /app
 
 USER $USER
 ENV PATH="${PATH}:/home/$USER/.asdf/shims:/home/$USER/.asdf/bin"
@@ -61,6 +64,6 @@ RUN echo "//npm.pkg.github.com/:_authToken=${GITHUB_ACCESS_TOKEN}" >> $HOME/.npm
 
 RUN echo "bundler" >> $HOME/.default-gems
 
-WORKDIR /home/oddcamp
+WORKDIR /app
 
 CMD ["/bin/bash"]

@@ -19,7 +19,7 @@ echo
 echo "# We are about to create an image named \"ocde\" with"
 echo "* GITHUB_ACCESS_TOKEN set as \"$github_access_token\""
 echo "* Volume \"ocde_asdf\""
-echo "* Volume \"ocde_node_modules\""
+#echo "* Volume \"ocde_node_modules\""
 echo
 
 read -p " Should we proceed (y/n)?" choice
@@ -33,9 +33,9 @@ then
 
     echo "## Creating the volumes..\n"
     docker volume create ocde_asdf
-    docker volume create ocde_node_modules
+    #docker volume create ocde_node_modules
 
-    echo "## Check \"README\" for the commands to add to your shell"
+    echo "## Check \"README\" for more info"
 
     echo "## Done!"
 fi
