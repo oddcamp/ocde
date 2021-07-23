@@ -6,12 +6,11 @@ ARG GROUP_ID=1000
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG ASDF_VERSION="v0.8.0"
+ARG ASDF_VERSION="v0.8.1"
 
 ENV TZ=Etc/UTC
 
-RUN apt-get update -y
-RUN apt install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     ca-certificates \
     curl \
@@ -23,7 +22,10 @@ RUN apt install -y --no-install-recommends \
     openssh-client \
     perl \
     tzdata \
-    zlib1g-dev
+    zlib1g-dev \
+    shared-mime-info \
+    htop \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN addgroup --gid $GROUP_ID $USER
 RUN adduser --shell /bin/bash --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID $USER
@@ -37,15 +39,15 @@ RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch $ASDF_VERSION
 RUN echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
 RUN echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.profile
 RUN echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
+
 RUN source ~/.bashrc
 
 # install asdf plugins
 RUN asdf plugin-add ruby
+RUN asdf plugin-add rust
 RUN asdf plugin-add nodejs
 RUN asdf plugin-add yarn
 
 RUN $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring
 
-WORKDIR /home/oddcamp
-
-CMD ["/bin/bash"]
+WORKDIR /home/$USER
