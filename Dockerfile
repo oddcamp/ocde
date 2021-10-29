@@ -40,6 +40,8 @@ RUN echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
 RUN echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.profile
 RUN echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
 
+RUN chmod +x $HOME/.asdf/asdf.sh
+
 RUN source ~/.bashrc
 
 # install asdf plugins
@@ -47,6 +49,15 @@ RUN asdf plugin-add ruby
 RUN asdf plugin-add rust
 RUN asdf plugin-add nodejs
 RUN asdf plugin-add yarn
+RUN asdf plugin-add elixir
+
+# The plugin below allows installation of pre-compiled Erlang releases
+# making it possile to not having to compile them.
+# NOTE: Keep this up2date with ubuntu versions
+RUN asdf plugin-add erlang https://github.com/michallepicki/asdf-erlang-prebuilt-ubuntu-20.04.git
+
+# Autoinstall Bundler for all ruby versions
+RUN echo "bundler" >> $HOME/.default-gems
 
 RUN $HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring
 
