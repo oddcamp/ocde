@@ -1,0 +1,13 @@
+
+░█████╗░░█████╗░██████╗░███████╗
+██╔══██╗██╔══██╗██╔══██╗██╔════╝
+██║░░██║██║░░╚═╝██║░░██║█████╗░░
+██║░░██║██║░░██╗██║░░██║██╔══╝░░
+╚█████╔╝╚█████╔╝██████╔╝███████╗
+░╚════╝░░╚════╝░╚═════╝░╚══════╝
+
+👋 Welcome to Odd Camp Development Environment!
+   - It includes runtimes and tools for our projects.
+   - See how this image is built and what it includes in more detail here: https://github.com/oddcamp/ocde
+   - All runtime dependencies are managed using ASDF. Learn more about it here: https://github.com/asdf-vm/asdf
+   - Missing a runtime or a tool? Submit a PR to improve this base image.
