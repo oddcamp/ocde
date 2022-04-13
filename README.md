@@ -9,6 +9,7 @@
 4. Git Credential Manager Core (https://github.com/GitCredentialManager/git-credential-manager)
 5. Visual Studio Code (https://code.visualstudio.com/)
     - Remote - Containers extension (https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+6. GITHUB_ACCESS_TOKEN environment variable
 
 #### Linux
 1. ...
@@ -74,6 +75,20 @@ Install Docker Desktop by downloading the appropriate distribution for your syst
 ```
 
 Open VS Code and install the extension `Remote - Containers`
+
+#### GITHUB_ACCESS_TOKEN
+
+Some application container will use your local environment variable GITHUB_ACCESS_TOKEN to access NPM packages, Gems, Docker images, etc from Github Packages and repositories. Add the following inside your shell profile so it is available when needed. 
+
+```shell
+  export GITHUB_ACCESS_TOKEN="replace_this_with_your_token"
+```
+
+Create a new token by visiting https://github.com/settings/tokens. Name it e.g. "Access Repo & Packages" and give it the following scopes:
+  - repo (Full control of private repositories)
+  - read:packages (Download packages from GitHub Package Registry)
+
+**Important:** Give the token an expiration time of max 6 months.
 
 
 ## How to use
