@@ -7,10 +7,10 @@ ARG GROUP_ID=1000
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG ASDF_VERSION="v0.9.0"
+ENV ASDF_DATA_DIR="/home/$USER/.asdf/data"
+
 
 ENV TZ=Etc/UTC
-
-COPY scripts/* first-run-notice.txt /tmp/scripts/
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
@@ -65,13 +65,16 @@ RUN adduser --shell /bin/bash --disabled-password --gecos '' --uid $USER_ID --gi
 RUN echo $USER ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USER \
     && chmod 0440 /etc/sudoers.d/$USER
 
-# Move first run notice to right spot
-RUN mkdir -p /usr/local/etc/vscode-dev-containers/ \
-    && mv -f /tmp/scripts/first-run-notice.txt /usr/local/etc/vscode-dev-containers/
+COPY --chown=${USER_ID}:${GROUP_ID} scripts/* /home/$USER/scripts/
+
+# Copy first run notice to the right spot for vscode
+COPY first-run-notice.txt /usr/local/etc/vscode-dev-containers/
 
 USER $USER
 
 SHELL ["/bin/bash", "-l", "-c"]
+
+COPY --chown=${USER_ID}:${GROUP_ID} scripts/* /home/$USER/scripts/
 
 # install and setup asdf version manager
 RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch $ASDF_VERSION
@@ -81,18 +84,12 @@ RUN echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
 
 RUN chmod +x $HOME/.asdf/asdf.sh
 
+RUN mkdir ~/.asdf/data
+
 RUN source ~/.bashrc
 
-# install asdf plugins
-RUN asdf plugin-add ruby
-RUN asdf plugin-add rust
-RUN asdf plugin-add nodejs
-RUN asdf plugin-add yarn
-RUN asdf plugin-add elixir
-RUN asdf plugin-add erlang
-
-RUN echo -e '\n. /tmp/scripts/first-run-notice.sh' >> ~/.bashrc
-RUN echo -e '\n. /tmp/scripts/default-editor.sh' >> ~/.bashrc
+RUN echo -e '\n. $HOME/scripts/first-run-notice.sh' >> ~/.bashrc
+RUN echo -e '\n. $HOME/scripts/default-editor.sh' >> ~/.bashrc
 
 WORKDIR /home/$USER
 
