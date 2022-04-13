@@ -103,3 +103,7 @@ Once it's installed and configured, Git Credential Manager is called implicitly 
 #### Git Credential Manager Core
 
 1. https://github.blog/2020-07-02-git-credential-manager-core-building-a-universal-authentication-experience/
+
+#### Visual Studio Code
+
+1. https://code.visualstudio.com/docs/remote/containers
