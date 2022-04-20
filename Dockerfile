@@ -51,6 +51,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     htop \
     zsh \
     python2 \
+    postgresql-client \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Ensure at least the en_US.UTF-8 UTF-8 locale is available.
@@ -83,6 +84,7 @@ RUN echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.profile
 RUN echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
 
 RUN chmod +x $HOME/.asdf/asdf.sh
+RUN chmod +x $HOME/scripts/asdf-init.sh
 
 RUN mkdir ~/.asdf/data
 
