@@ -12,7 +12,13 @@
 6. GITHUB_ACCESS_TOKEN environment variable
 
 #### Linux
-1. ...
+1. Docker Engine (https://docs.docker.com/engine/install/)
+2. Docker Compose (https://docs.docker.com/compose/install/)
+3. Git (https://git-scm.com/)
+4. Git Credential Manager Core (https://github.com/GitCredentialManager/git-credential-manager)
+5. Visual Studio Code (https://code.visualstudio.com/)
+    - Remote - Containers extension (https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+6. GITHUB_ACCESS_TOKEN environment variable
 
 #### Windows
 
@@ -78,7 +84,7 @@ Open VS Code and install the extension `Remote - Containers`
 
 #### GITHUB_ACCESS_TOKEN
 
-Some application container will use your local environment variable GITHUB_ACCESS_TOKEN to access NPM packages, Gems, Docker images, etc from Github Packages and repositories. Add the following inside your shell profile so it is available when needed. 
+Some application container will use your local environment variable GITHUB_ACCESS_TOKEN to access NPM packages, Gems, Docker images, etc from Github Packages and repositories. Add the following inside your shell profile so it is available when needed.
 
 ```shell
   export GITHUB_ACCESS_TOKEN="replace_this_with_your_token"
