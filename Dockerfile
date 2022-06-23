@@ -33,6 +33,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     jq \
     lsb-release \
     apt-transport-https \
+    inotify-tools \
     locales \
     sudo \
     ncdu \
