@@ -54,6 +54,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python2 \
     postgresql-client \
     imagemagick \
+    libvips \
+    libvips-dev \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Ensure at least the en_US.UTF-8 UTF-8 locale is available.
