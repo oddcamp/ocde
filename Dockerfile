@@ -6,7 +6,7 @@ ARG GROUP_ID=1000
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG ASDF_VERSION="v0.11.1"
+ARG ASDF_VERSION="v0.11.3"
 ENV ASDF_DATA_DIR="/home/$USER/.asdf/data"
 
 
