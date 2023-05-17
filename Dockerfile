@@ -57,6 +57,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libvips \
     libvips-dev \
     libclang-dev \
+    libyaml-dev \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Ensure at least the en_US.UTF-8 UTF-8 locale is available.
